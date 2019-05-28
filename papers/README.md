@@ -1,17 +1,15 @@
 # Papers relevant to our project
 
 ## RNNs for Time Series with Missing Values
-* [Recurrent Neural Networks for Multivariate Time Series with Missing Values](https://arxiv.org/pdf/1606.01865.pdf)
-* [Modeling Missing Data in Clinical Time Series with RNNs](https://arxiv.org/pdf/1606.04130.pdf)
+* [Doctor AI: Predicting Clinical Events via Recurrent Neural Networks](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5341604/pdf/nihms-845642.pdf)
+* [LEAP: Learning to Prescribe Effective and Safe Treatment Combinations for Multimorbidity](http://keg.cs.tsinghua.edu.cn/jietang/publications/KDD17-Zhang-et-al-LEAP-DL-pred-Healthcare.pdf)
+* [Predicting Medications from Diagnostic Codes with Recurrent Neural Networks](https://openreview.net/pdf?id=rJEgeXFex)
 
 ## Interesting RNN modifications
 * [Phased LSTM: Accelerating Recurrent Neural Network Training for Long or Event-based Sequences](https://arxiv.org/abs/1610.09513)
-* [Skip RNN: Learning to Skip State Updates in Recurrent Neural Networks (Google)](https://arxiv.org/abs/1708.06834)
+* [Skip RNN: Learning to Skip State Updates in Recurrent Neural Networks](https://arxiv.org/abs/1708.06834)
 * [Dilated Recurrent Neural Networks](https://arxiv.org/abs/1710.02224)
 * [Adaptive Computation Time for Recurrent Neural Networks](https://arxiv.org/abs/1603.08983)
-
-## Foundational Reinforcement Learning + Recurrent Neural Network paper (I based my current work on this paper)
-* [Recurrent Models of Visual Attention (Google)](https://arxiv.org/abs/1406.6247)
 
 ## Fun videos
 * [How to Learn an Algorithm - Jurgen Schmidhuber (Inventor of the LSTM)](https://youtu.be/mF5-tr7qAF4)
