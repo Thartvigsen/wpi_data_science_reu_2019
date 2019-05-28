@@ -1,6 +1,6 @@
 # Papers relevant to our project
 
-## RNNs for Time Series with Missing Values
+## Predicting Clinical Outcomes with RNNs
 * [Doctor AI: Predicting Clinical Events via Recurrent Neural Networks](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5341604/pdf/nihms-845642.pdf)
 * [LEAP: Learning to Prescribe Effective and Safe Treatment Combinations for Multimorbidity](http://keg.cs.tsinghua.edu.cn/jietang/publications/KDD17-Zhang-et-al-LEAP-DL-pred-Healthcare.pdf)
 * [Predicting Medications from Diagnostic Codes with Recurrent Neural Networks](https://openreview.net/pdf?id=rJEgeXFex)
