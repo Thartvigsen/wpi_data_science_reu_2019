@@ -1,6 +1,7 @@
 # Papers relevant to our project
 
 ## Predicting Clinical Outcomes with RNNs
+* [Learning to Diagnose with LSTM Recurrent Neural Networks](https://arxiv.org/pdf/1511.03677.pdf)
 * [Doctor AI: Predicting Clinical Events via Recurrent Neural Networks](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5341604/pdf/nihms-845642.pdf)
 * [LEAP: Learning to Prescribe Effective and Safe Treatment Combinations for Multimorbidity](http://keg.cs.tsinghua.edu.cn/jietang/publications/KDD17-Zhang-et-al-LEAP-DL-pred-Healthcare.pdf)
 * [Predicting Medications from Diagnostic Codes with Recurrent Neural Networks](https://openreview.net/pdf?id=rJEgeXFex)
