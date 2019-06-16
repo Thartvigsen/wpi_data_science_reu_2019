@@ -12,6 +12,10 @@
 * [Dilated Recurrent Neural Networks](https://arxiv.org/abs/1710.02224)
 * [Adaptive Computation Time for Recurrent Neural Networks](https://arxiv.org/abs/1603.08983)
 
+## Sample AMIA Papers
+* [A Hybrid Residual Network and Long Short-Term Memory Method for Peptic Ulcer Bleeding Mortality Prediction](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6371275/pdf/2975069.pdf)
+* [An Interpretable ICU Mortality Prediction Model Based on Logistic Regression and Recurrent Neural Networks with LSTM units](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6371275/pdf/2975069.pdf)
+
 ## Fun videos
 * [How to Learn an Algorithm - Jurgen Schmidhuber (Inventor of the LSTM)](https://youtu.be/mF5-tr7qAF4)
 * [RNN Symposium - Intro to RNNs and Other Machines that Learn Algorithms - Jurgen Schmidhuber](https://www.youtube.com/watch?v=0YLpp_TVhLY)
