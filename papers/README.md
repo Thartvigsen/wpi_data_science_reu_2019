@@ -8,7 +8,7 @@
 
 ## Sample AMIA Papers
 * [A Hybrid Residual Network and Long Short-Term Memory Method for Peptic Ulcer Bleeding Mortality Prediction](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6371275/pdf/2975069.pdf)
-* [An Interpretable ICU Mortality Prediction Model Based on Logistic Regression and Recurrent Neural Networks with LSTM units](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6371275/pdf/2975069.pdf)
+* [An Interpretable ICU Mortality Prediction Model Based on Logistic Regression and Recurrent Neural Networks with LSTM units](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6371274/)
 * [AMIA paper source](https://knowledge.amia.org/67852-amia-1.4259402/t004-1.4263758?qr=1)
 
 ## Fun videos
