@@ -63,3 +63,7 @@ Remember, *main.sh* has to be executable, so when creating this file you need to
 ```bash
 chmod +x main.sh
 ```
+
+### More complex/modular approach
+More to come later.
+
