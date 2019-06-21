@@ -26,6 +26,7 @@ We will attempt to modify the RNN architecture such that some challenges associa
 The data we will use is from the [MIMIC III Intensive Care Unit Database](https://mimic.physionet.org/) which contains Electronic Health Records (EHR) for over 45,000 patients over 11 years in Beth Israel Deaconess Medical Center. We will extract sequences of tests and medications and recordings for a subset of these 45,000 patients. The extraction will be done using SQL, an intuitive programming language for extracting data from relational databases.
 
 ## Links
+* [Tutorials](/pages/tutorials/turing_jobs.md)
 * [Software/tools we will be using](/pages/tools.md)
 * [Learning Resources](/pages/learning_resources.md)
 * [Papers](/papers)
