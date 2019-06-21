@@ -33,10 +33,6 @@ python main.py --taskid=${SLURM_ARRAY_TASK_ID} # CALL YOUR PYTHON FILE
 ```
 
 #### main.sh
-You will execute this script in the command line to run a job:
-```bash
-./main.sh 0
-```
 The number following the execution is the "job ID", which will be included in the names of the output and error logs.
 
 The actual file's structure is very simple:
@@ -56,3 +52,14 @@ source ./env/bin/activate
 sbatch --array=$1 main.sbatch
 ```
 ./env/bin/python is the path to the python version you are running in your virtual environment (in this example my virtual environment is called *env*. source ./env/bin/activate simply activates the virtual environment.
+
+### Submitting a job
+To run your file *main.py* on Turing, execute *main.sh* in the command line to run a job:
+```bash
+./main.sh 0
+```
+
+Remember, *main.sh* has to be executable, so when creating this file you need to modify the permissions of the file to add execution:
+```bash
+chmod +x main.sh
+```
