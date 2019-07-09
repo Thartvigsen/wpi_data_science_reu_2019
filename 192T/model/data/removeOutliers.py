@@ -4,6 +4,7 @@ This method removes any outliers from the data. Outliers are defined as data two
 
 import torch
 import numpy as np
+from data.patientHandler import patientReal
 
 def removeOutliers(TS, masks, diffs, numPatients, numTimeSteps, numVariables):
     TS = np.array(TS) 
@@ -13,9 +14,13 @@ def removeOutliers(TS, masks, diffs, numPatients, numTimeSteps, numVariables):
         for i in range(numVariables):
             cleanVar = []
             var = TS[n,:,i]
-        
-            mean = np.mean(var)
-            std = np.std(var)
+            if(np.sum(np.array(masks[n,:,i]))==192):
+                realPatient = var
+            else:
+                realPatient = patientReal(var, masks[n,:,i], numTimeSteps) 
+            
+            mean = np.mean(realPatient)
+            std = np.std(realPatient)
             boundSet = (mean - 2 * std, mean + 2 * std)
             for j in range(numTimeSteps):
                 y = var[j]

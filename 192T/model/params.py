@@ -14,7 +14,7 @@ class params():
         self.N_LAYERS = 2
         self.BATCH_SIZE = 32
         self.DROPOUT = 0.5
-        self.N_EPOCHS = 10
+        self.N_EPOCHS = 30
         self.LEARNING_RATE = 0.005
         self.N_FEATURES = 58
         self.N_CLASSES = 20

@@ -24,7 +24,7 @@ class dataLoader(torch.utils.data.Dataset):
     #Load the data and perform imputation. This is the only part of the code to change!!!
     def generate_data(self, series, labels, masks, diffs):
 
-        series, masks, labels, diffs, numPatients, numTimeSteps, numVars = self.load_medical(series, labels, masks, diffs, 500)
+        series, masks, labels, diffs, numPatients, numTimeSteps, numVars = self.load_medical(series, labels, masks, diffs, 6261)
 
         series, masks = meanImpute(series, masks, numPatients, numTimeSteps, numVars) #Use mean impute
         return series.type(torch.FloatTensor), labels, masks, diffs 
