@@ -4,7 +4,7 @@ This class loads in data provided by the user. It stores the data and accompanyi
 
 import torch
 import torch.utils.data
-from data.meanImpute import meanImpute
+from data.Final_Forward_Imputation import tensorLOCF
 import numpy as np
 from data.removeOutliers import removeOutliers
 from data.calculateSplits import calculateSplits
@@ -26,7 +26,7 @@ class dataLoader(torch.utils.data.Dataset):
 
         series, masks, labels, diffs, numPatients, numTimeSteps, numVars = self.load_medical(series, labels, masks, diffs, 500)
 
-        series, masks = meanImpute(series, masks, numPatients, numTimeSteps, numVars) #Use mean impute
+        series, masks, diffs = NEWMETHOD(series, masks, diffs, numPatients, numTimeSteps, numVars) #Use mean impute
         return series.type(torch.FloatTensor), labels, masks, diffs 
 
 
