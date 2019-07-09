@@ -4,7 +4,7 @@ This code is essentially the "main" function. It actually loads in the data, cre
 
 import torch 
 import torch.nn as nn
-from dataLoader import dataLoader
+from turingFinal import dataLoader
 from rnn import RNN
 from trainRun import trainRun
 from testRun import testRun
