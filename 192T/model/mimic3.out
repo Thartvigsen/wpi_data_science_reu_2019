@@ -1,4 +1,0 @@
-/cm/local/apps/slurm/var/spool/job686955/slurm_script: line 7: 128172 Killed                  python -u mimic3.py
-slurmstepd: error: Exceeded step memory limit at some point.
-slurmstepd: error: Exceeded job memory limit at some point.
-Epoch [1/30], Validation AUC: 0.7923359647012443
