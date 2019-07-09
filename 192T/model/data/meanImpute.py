@@ -4,7 +4,7 @@ This function imputes mean values for missing data. It calculates the mean for a
 
 import numpy as np
 import torch
-from patientHandler import patientReal, getPatient, handleZeros
+from data.patientHandler import patientReal, getPatient, handleZeros
 
 def meanImpute(data, masks, numPatients, numTimeSteps, numVariables):
 

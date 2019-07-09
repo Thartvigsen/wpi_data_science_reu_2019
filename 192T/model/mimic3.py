@@ -13,7 +13,7 @@ from params import params
 
 
 params = params() # This calls a class that handles the parameters of the model
-
+i
 
 dataObj = dataLoader("time_series.pt", "labels.pt", "masks.pt", params.BATCH_SIZE) # Load in the data
 

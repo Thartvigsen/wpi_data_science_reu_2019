@@ -5,7 +5,7 @@ This method removes any outliers from the data. Outliers are defined as data two
 import torch
 import numpy as np
 
-def removeOutliers(TS, masks, numPatients, numTimeSteps, numVariables):
+def removeOutliers(TS, masks, diffs, numPatients, numTimeSteps, numVariables):
     TS = np.array(TS) 
     finalTS = []
     for n in range(numPatients):
@@ -24,12 +24,16 @@ def removeOutliers(TS, masks, numPatients, numTimeSteps, numVariables):
                 else:
                     cleanVar.append(0)
                     masks[n][j][i] = 1
+                    if(j==0):
+                        diffs[n][j][i] = 0
+                    else:
+                        diffs[n][j][i] = diffs[n][j-1][i] + 1/48
             cleanTS.append(cleanVar)
 
         cleanTS = np.asarray(cleanTS)
         finalTS.append(cleanTS)
     finalTS = torch.from_numpy(np.asarray(finalTS))
     finalTS = torch.transpose(finalTS, 1, 2)
-    return finalTS, masks
+    return finalTS, masks, diffs
         
     
