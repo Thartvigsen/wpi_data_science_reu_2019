@@ -17,7 +17,7 @@ def patientReal(patient, patientMasks, numTimeSteps):
     realPatient = []
     for k in range(numTimeSteps):
         if(patientMasks[k]==0):
-            realPatient.append(k)
+            realPatient.append(patient[k])
     return realPatient
 
 #Get patient and patientMasks for specific variable
