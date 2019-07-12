@@ -10,35 +10,33 @@ def removeOutliers(TS, masks, diffs, numPatients, numTimeSteps, numVariables):
     TS = np.array(TS) 
     finalTS = []
     for n in range(numPatients):
-        cleanTS = []
+        print("Patient number: ",n)
+        cleanPatient = []
         for i in range(numVariables):
             cleanVar = []
             var = TS[n,:,i]
-            if(np.sum(np.array(masks[n,:,i]))==192):
-                realPatient = var
+            if(np.sum(np.array(var)==0)):
+                cleanPatient.append(var)
+                continue
             else:
-                realPatient = patientReal(var, masks[n,:,i], numTimeSteps) 
-            
-            mean = np.mean(realPatient)
-            std = np.std(realPatient)
-            boundSet = (mean - 2 * std, mean + 2 * std)
-            for j in range(numTimeSteps):
-                y = var[j]
-                if(y>=boundSet[0] and y <= boundSet[1]):
-                    cleanVar.append(y)
-                else:
-                    cleanVar.append(0)
-                    masks[n][j][i] = 1
-                    if(j==0):
-                        diffs[n][j][i] = 0
+                realPatient = patientReal(var, masks[n,:,i], numTimeSteps)             
+                mean = np.mean(realPatient)
+                std = np.std(realPatient)
+                boundSet = (mean - 2 * std, mean + 2 * std)
+                for j in range(numTimeSteps):
+                    y = var[j]
+                    if(y>=boundSet[0] and y <= boundSet[1]):
+                        cleanVar.append(y)
                     else:
-                        diffs[n][j][i] = diffs[n][j-1][i] + 1/48
-            cleanTS.append(cleanVar)
+                        cleanVar.append(0)
+                        masks[n][j][i] = 1
+                        if(j==0):
+                            diffs[n][j][i] = 0
+                        else:
+                            diffs[n][j][i] = diffs[n][j-1][i] + 1/48
+                cleanPatient.append(cleanVar)
 
-        cleanTS = np.asarray(cleanTS)
-        finalTS.append(cleanTS)
+        finalTS.append(np.asarray(cleanPatient))
     finalTS = torch.from_numpy(np.asarray(finalTS))
     finalTS = torch.transpose(finalTS, 1, 2)
-    return finalTS, masks, diffs
-        
-    
+    return finalTS, masks, diffs 
