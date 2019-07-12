@@ -15,19 +15,9 @@ def trainRun(model, train_loader, validation_loader, scheduler, optimizer, N_EPO
 
             model.zero_grad()
 
-            tr_loss = 0
-
-            for j in range(len(time_series)):
-
-                predictions = model(time_series[:j])
-                tr_loss+=criterion(predictions,labels)
-
-
             predictions = model(time_series)
 
             loss = criterion(predictions, labels)
-
-            loss+=.6*tr_loss
 
             loss.backward()
 

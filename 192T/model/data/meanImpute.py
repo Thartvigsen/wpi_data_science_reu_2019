@@ -4,7 +4,7 @@ This function imputes mean values for missing data. It calculates the mean for a
 
 import numpy as np
 import torch
-from data.patientHandler import patientReal, getPatient, handleZeros
+from data.patientHandler import patientReal, getPatient
 
 def meanImpute(data, masks, numPatients, numTimeSteps, numVariables):
 
@@ -14,22 +14,21 @@ def meanImpute(data, masks, numPatients, numTimeSteps, numVariables):
             patient, patientMasks = getPatient(data, masks, i, j) #Get time steps for variable
 
             realPatient = patientReal(patient, patientMasks, numTimeSteps) # Get array of patient with only real data
-
-            if(len(realPatient)==0):
-                data[i,...,j] = handleZeros(realPatient, numTimeSteps) # Code decides what to do if no data
+        
+            #Insert the mean for any missing values
             
-            else: #Insert the mean for any missing values
-            
-                mean = np.mean(realPatient)
+            if(np.sum(realPatient)==0):
+               continue
 
-                for k in range(numTimeSteps): #Iterate through time steps
+            mean = np.mean(realPatient)
 
-                    if(patientMasks[k]==1): #Check if value is missing
+            for k in range(numTimeSteps): #Iterate through time steps
 
-                        realPatient.insert(k, mean) #Impute mean if missing value
+                if(patientMasks[k]==1): #Check if value is missing
 
-                data[i, ..., j] = torch.from_numpy(np.asarray(realPatient)) #Set data for variable
+                    realPatient.insert(k, mean) #Impute mean if missing value
 
-    return data, masks  
+            data[i, ..., j] = torch.from_numpy(np.asarray(realPatient)) #Set data for variable
 
-                 
+    torch.save(data,'mean_time_series.pt')
+    print("Saved!") 
