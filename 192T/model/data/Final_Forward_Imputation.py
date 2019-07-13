@@ -8,8 +8,6 @@ import torch
 import numpy as np
 #import importlib
 #import matplotlib.pyplot as plt
-from data.patientHandler import patientReal, getPatient, handleZeros
-
 
 def simpleLOCF(TSarray, maskArray):
             
@@ -68,11 +66,11 @@ def tensorLOCF(timeSeries, masks, numPatients, numTimeSteps, numVars):
 		    	         
             else:
             """
-                # shape: (192, ) (just one column)
-                oneTimeSeries = np.asarray(patientTS[:, j]) # for patient i and variable j, take the column
+            # shape: (192, ) (just one column)
+            oneTimeSeries = np.asarray(patientTS[:, j]) # for patient i and variable j, take the column
              
-                # stores into one giant tensor, 6261 x 192 x 59
-                timeSeries[i, ..., j] = torch.from_numpy((np.asarray(oneTimeSeries)))
+            # stores into one giant tensor, 6261 x 192 x 59
+            timeSeries[i, ..., j] = torch.from_numpy((np.asarray(oneTimeSeries)))
 
     print(timeSeries)
     torch.save(timeSeries, 'forward_time_series.pt')
