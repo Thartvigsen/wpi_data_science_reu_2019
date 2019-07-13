@@ -20,8 +20,9 @@ def cleanData(series_f, masks_f, diffs_f):
 
     numPatients, numTimeSteps, numVars = get_sizes(series) 
         
-    series = handleZeros(series, masks, numPatients, numTimeSteps, numVars) 
+
     series, masks, diffs = removeOutliers(series, masks, diffs, numPatients, numTimeSteps, numVars)
+    series = handleZeros(series, masks, numPatients, numTimeSteps, numVars) 
 
     torch.save(series, series_f)
     torch.save(masks, masks_f)

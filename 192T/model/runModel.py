@@ -7,14 +7,10 @@ from testRun import testRun
 
 def runModel(model, train_loader, validation_loader, test_loader, params, NUM_ITER):
 
-    average = 0 # Average AUC
-
     params.setOptimizer(model)
-
-    for run in range(NUM_ITER):
         
-        model, params.optimizer = trainRun(model, train_loader, validation_loader, params.scheduler, params.optimizer, params.N_EPOCHS, params.criterion)
+    model, params.optimizer = trainRun(model, train_loader, validation_loader, params.scheduler, params.optimizer, params.N_EPOCHS, params.criterion)
 
-        average += testRun(model, test_loader)
+    auc = testRun(model, test_loader)
 
-    print('Total AUC: {}'.format(average/NUM_ITER))
+    print('Total AUC: {}'.format(auc))
