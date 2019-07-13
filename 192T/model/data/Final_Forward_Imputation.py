@@ -54,21 +54,24 @@ def tensorLOCF(timeSeries, masks, diffs, numPatients, numTimeSteps, numVars):
 
         for j in range(numVars): 
 
-       	    rawPatientColumnTS, rawPatientColumnMask = getPatient(timeSeries, masks, i, j)
+            rawPatientColumnTS, rawPatientColumnMask = getPatient(timeSeries, masks, i, j)
 	    
 	    # realPatient is an array (<=192 x 1)  with only OBSERVED values  
             realPatient = patientReal(rawPatientColumnTS, rawPatientColumnMask, numTimeSteps)
 
             # if there are no observed values, a.k.a all values in the column are 0
             if (len(realPatient) == 0):
-                timeSeries[i, ..., j] = handleZeros(realPatient, numTimeSteps)
+                globalMean = handleZeros(j, timeSeries, diffs)
+                timeSeries[i,..., j] = globalMean
+                print(timeSeries[i,...,j]) 
 		    	         
             else:
 
-            # shape: (192, ) (just one column)
+                # shape: (192, ) (just one column)
                 oneTimeSeries = np.asarray(patientTS[:, j]) # for patient i and variable j, take the column
              
                 # stores into one giant tensor, 6261 x 192 x 59
                 timeSeries[i, ..., j] = torch.from_numpy((np.asarray(oneTimeSeries)))
-    
+
+    print(timeSeries) 
     return timeSeries, masks, diffs
