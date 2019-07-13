@@ -41,7 +41,7 @@ def simpleLOCF(TSarray, maskArray):
 # this does forward imputation for the big data
 # INPUT NUMBER OF PATIENTS, TIMESERIES TENSOR, MASKS TENSOR AND DIFFS
 
-def tensorLOCF(timeSeries, masks, diffs, numPatients, numTimeSteps, numVars):
+def tensorLOCF(timeSeries, masks, numPatients, numTimeSteps, numVars):
     
     numpyTimeSeries = timeSeries.numpy()
     numpyMasks = masks.numpy()
@@ -53,12 +53,13 @@ def tensorLOCF(timeSeries, masks, diffs, numPatients, numTimeSteps, numVars):
         patientTS, patientMask = simpleLOCF(numpyTimeSeries[i], numpyMasks[i])      
 
         for j in range(numVars): 
-
+            """
             rawPatientColumnTS, rawPatientColumnMask = getPatient(timeSeries, masks, i, j)
-	    
+	  
 	    # realPatient is an array (<=192 x 1)  with only OBSERVED values  
             realPatient = patientReal(rawPatientColumnTS, rawPatientColumnMask, numTimeSteps)
 
+            
             # if there are no observed values, a.k.a all values in the column are 0
             if (len(realPatient) == 0):
                 globalMean = handleZeros(j, timeSeries, diffs)
@@ -66,12 +67,13 @@ def tensorLOCF(timeSeries, masks, diffs, numPatients, numTimeSteps, numVars):
                 print(timeSeries[i,...,j]) 
 		    	         
             else:
-
+            """
                 # shape: (192, ) (just one column)
                 oneTimeSeries = np.asarray(patientTS[:, j]) # for patient i and variable j, take the column
              
                 # stores into one giant tensor, 6261 x 192 x 59
                 timeSeries[i, ..., j] = torch.from_numpy((np.asarray(oneTimeSeries)))
 
-    print(timeSeries) 
-    return timeSeries, masks, diffs
+    print(timeSeries)
+    torch.save(timeSeries, 'forward_time_series.pt')
+    print("Saved!") 
