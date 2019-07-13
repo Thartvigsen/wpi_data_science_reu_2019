@@ -20,10 +20,7 @@ def cleanData(series_f, masks_f, diffs_f):
 
     numPatients, numTimeSteps, numVars = get_sizes(series) 
         
-<<<<<<< HEAD
 
-=======
->>>>>>> ee58e066367187b11836db9eec4c0fa8035b9ffa
     series, masks, diffs = removeOutliers(series, masks, diffs, numPatients, numTimeSteps, numVars)
     series = handleZeros(series, masks, numPatients, numTimeSteps, numVars) 
 
