@@ -113,11 +113,11 @@ def tensorCombination(timeSeries, masks, diffs, numPatients, numTimeSteps, numVa
 
           else:
           """
-             # shape: (192, ) (just one column)
-             oneTimeSeries = np.asarray(patientTS[:, j]) # for patient i and variable j, ta    ke the column
+          # shape: (192, ) (just one column)
+          oneTimeSeries = np.asarray(patientTS[:, j]) # for patient i and variable j, take the column
 
-             # stores into one giant tensor, 6261 x 192 x 59
-             timeSeries[i, ..., j] = torch.from_numpy((np.asarray(oneTimeSeries)))
+          # stores into one giant tensor, 6261 x 192 x 59
+          timeSeries[i, ..., j] = torch.from_numpy((np.asarray(oneTimeSeries)))
 
     print(timeSeries)
     torch.save(timeSeries, 'for_back_combination_time_series.pt')
