@@ -86,7 +86,7 @@ def simpleCombination(TSarray, maskArray):
     return TSarray, maskArray
 
 
-def tensorCombination(timeSeries, masks, diffs, numPatients, numTimeSteps, numVars):
+def tensorCombination(timeSeries, masks, numPatients, numTimeSteps, numVars):
     
     numpyTimeSeries = timeSeries.numpy()
     numpyMasks = masks.numpy()
