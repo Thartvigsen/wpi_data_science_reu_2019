@@ -18,7 +18,7 @@ def patientReal(patient, patientMasks, numTimeSteps):
     for k in range(numTimeSteps):
         if(patientMasks[k]==0):
             realSeries.append(patient[k])
-            realMask.append(patient[k])
+            realMask.append(k)
     return realSeries, realMask
 
 #Get patient and patientMasks for specific variable
