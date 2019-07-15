@@ -14,7 +14,7 @@ import numpy as np
 #Create a patient array with only real values
 def patientReal(patient, patientMasks, numTimeSteps):
 
-    realSeries, realMask = []
+    realSeries, realMask = [], []
     for k in range(numTimeSteps):
         if(patientMasks[k]==0):
             realSeries.append(patient[k])
