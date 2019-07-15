@@ -14,11 +14,12 @@ import numpy as np
 #Create a patient array with only real values
 def patientReal(patient, patientMasks, numTimeSteps):
 
-    realPatient = []
+    realSeries, realMask = []
     for k in range(numTimeSteps):
         if(patientMasks[k]==0):
-            realPatient.append(patient[k])
-    return realPatient
+            realSeries.append(patient[k])
+            realMask.append(patient[k])
+    return realSeries, realMask
 
 #Get patient and patientMasks for specific variable
 def getPatient(data, masks, i, j):
