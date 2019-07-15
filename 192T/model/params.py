@@ -16,7 +16,7 @@ class params():
         self.DROPOUT = 0.5
         self.N_EPOCHS = 30
         self.LEARNING_RATE = 0.005
-        self.N_FEATURES = 58
+        self.N_FEATURES = 55
         self.N_CLASSES = 20
 
         self.criterion = nn.functional.binary_cross_entropy
