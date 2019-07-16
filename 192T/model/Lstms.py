@@ -16,16 +16,16 @@ class LSTMs(nn.Module):
         self.LSTM = nn.LSTM(input_dim, self.HIDDEN_DIM, N_LAYERS)
         self.out = nn.Linear(self.HIDDEN_DIM, output_dim)
 
-        self.softmax = nn.Softmax(dim=2)
+        self.sigmoid = nn.Sigmoid()
 
     def forward(self, sequence):
         state = (torch.zeros(self.N_LAYERS, self.BATCH_SIZE, self.HIDDEN_DIM), torch.zeros(self.N_LAYERS, self.BATCH_SIZE, self.HIDDEN_DIM))
         sequence = torch.transpose(sequence,0,1)
         hidden, state = self.LSTM(sequence, state)
         output = self.out(hidden)
-        self.prediction = self.softmax(output)
+        self.prediction = self.sigmoid(output)
         #self.output = self.out(hidden[-1])
-        #prediction = self.softmax(self.output)
+        #prediction = self.sigmoid(self.output)
         return self.prediction[-1]
 
     def applyLoss(self, predictions, labels):
