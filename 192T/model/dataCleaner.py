@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 from data.removeVariable import removeVariable
-from data.removeOutliers import removeOutliers
+from data.removeOutliersNormalize import removeOutliersNormalize
 
 #Get and return the three dimensions of the time series - patients x timeSteps x vars
 def get_sizes(series):
@@ -21,7 +21,7 @@ def cleanData(series_f, masks_f, diffs_f):
     numPatients, numTimeSteps, numVars = get_sizes(series) 
         
 
-    series, masks, diffs = removeOutliers(series, masks, diffs, numPatients, numTimeSteps, numVars)
+    series, masks, diffs = removeOutliersNormalize(series, masks, diffs, numPatients, numTimeSteps, numVars)
     series = handleZeros(series, masks, numPatients, numTimeSteps, numVars) 
 
     torch.save(series, series_f)
@@ -62,12 +62,10 @@ def handleZeros(data, masks, numPatients, numTimeSteps, numVars):           #all
                 for step in data[patient,...,var]:
                     step = globalMean
     
-
-
     return data
 
 def main():
-    cleanData("time_series.pt", "masks.pt", "diffs.pt")
+    cleanData("data.pt", "masks.pt", "diffs.pt")
     print("Data cleaned!!!")
 
 if __name__ == "__main__":
