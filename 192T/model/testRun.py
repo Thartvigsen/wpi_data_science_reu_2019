@@ -34,6 +34,6 @@ def testRun(model, test_loader):
 
     auc = aucTotal/count
 
-    print('AUC: {}'.format(auc))
+    print('Testing AUC: {}'.format(auc))
 
     return auc
