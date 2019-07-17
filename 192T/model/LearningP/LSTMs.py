@@ -30,7 +30,7 @@ class LSTMs(nn.Module):
 
     def applyLoss(self, predictions, labels):
 
-        criterion=nn.CrossEntropyLoss()
+        criterion=nn.functional.binary_cross_entropy
         loss_c = criterion(predictions, labels)
         
         prediction_diffs = []
@@ -44,7 +44,7 @@ class LSTMs(nn.Module):
         loss_s = torch.sum(prediction_diffs)
 
         loss = loss_c + self.LAMBDA*loss_s
-        return loss, loss_s  
+        return loss 
 
 
 
