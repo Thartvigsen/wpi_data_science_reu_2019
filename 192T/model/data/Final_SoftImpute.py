@@ -4,7 +4,6 @@
 import torch
 import numpy as np
 import importlib
-import matplotlib.pyplot as plt
 from fancyimpute import SoftImpute, BiScaler
 
 def softImpute(timeSeries, masks, numPatients, numTimeSteps, numVars):
