@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 '''
 This code deals with raw patient data
 '''
@@ -16,7 +10,7 @@ def patientReal(patient, patientMasks, numTimeSteps):
 
     realSeries, realMask = [], []
     for k in range(numTimeSteps):
-        if(patientMasks[k]==0):
+        if(int(patientMasks[k])==0):
             realSeries.append(patient[k])
             realMask.append(k)
     return realSeries, realMask
