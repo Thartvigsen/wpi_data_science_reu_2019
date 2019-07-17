@@ -9,7 +9,7 @@ def runModel(model, train_loader, validation_loader, test_loader, params, NUM_IT
 
     params.setOptimizer(model)
         
-    model, params.optimizer = trainRun(model, train_loader, validation_loader, params.scheduler, params.optimizer, params.N_EPOCHS, params.criterion)
+    model, params.optimizer = trainRun(model, train_loader, validation_loader, params.scheduler, params.optimizer, params.BATCH_SIZE, params.N_EPOCHS, params.criterion)
 
     auc = testRun(model, test_loader)
 
