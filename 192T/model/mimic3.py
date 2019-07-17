@@ -6,6 +6,7 @@ import torch
 import torch.nn as nn
 from data.dataLoader import dataLoader
 from rnn import RNN
+from Lstms import LSTMs
 from trainRun import trainRun
 from testRun import testRun
 from params import params
@@ -13,7 +14,7 @@ from runModel import runModel
 
 params = params() # This calls a class that handles the parameters of the model 
 
-dataObj = dataLoader("mean_time_series.pt", "labels.pt", "masks.pt", "diffs.pt", params.BATCH_SIZE) # Load in the data
+dataObj = dataLoader("for_back_combination_time_series.pt", "labels.pt", "masks.pt", "diffs.pt", params.BATCH_SIZE) # Load in the data
 
 train_loader, validation_loader, test_loader = dataObj.train_ix, dataObj.validation_ix, dataObj.test_ix # Split the data into train, validation, test
 
