@@ -58,6 +58,8 @@ def removeOutliersNormalize(series, masks, diffs, numPatients, numTimeSteps, num
                 realSeriesCopy = []
                 for elm in realSeries:
                     realSeriesCopy.append(elm)
+                if len(realSeriesCopy)==0:
+                    localMin, localMax = None, None
                 localMin = min(realSeriesCopy)
                 localMax = max(realSeriesCopy)
                 
