@@ -13,32 +13,34 @@ def softImpute(timeSeries, masks, numPatients, numTimeSteps, numVars):
  
      for i in range(numPatients):
  
-         # doing softImpute on one patient at a time, "i" times     shape: 192 x 59
- 
-         patientTS = SoftImpute().fit_transform(numpyTimeSeries[i])
  
          for j in range(numVars):
              
-             """
-             rawPatientColumnTS, rawPatientColumnMask = getPatient(timeSeries, masks, i, j)
+             for y in range(numTimeSteps):
+                 
+                 if (numpyMasks[i,y,j]) == 1:
+                     series[i, y, j] = None
+
+             
+         # doing softImpute on one patient at a time, "i" times     shape: 192 x 59
+    
+         patientTS = SoftImpute().fit_transform(numpyTimeSeries[i])
+
+         # shape: (192, ) (just one column)
+         oneTimeSeries = np.asarray(patientTS[:, j]) # for patient i and variable j, take the column
  
-             # realPatient is an array (<=192 x 1)  with only OBSERVED values  
-             realPatient = patientReal(rawPatientColumnTS, rawPatientColumnMask, numTimeSteps)
- 
-             # if there are no observed values, a.k.a all values in the column are 0
-             if (len(realPatient) == 0):
-                 globalMean = handleZeros(j, timeSeries, diffs)
-                 timeSeries[i,..., j] = globalMean
-                 print(timeSeries[i,...,j])
- 
-             else:
-             """
-             # shape: (192, ) (just one column)
-             oneTimeSeries = np.asarray(patientTS[:, j]) # for patient i and variable j, take the column
- 
-             # stores into one giant tensor, 6261 x 192 x 59
-             timeSeries[i, ..., j] = torch.from_numpy((np.asarray(oneTimeSeries)))
- 
+         # stores into one giant tensor, 6261 x 192 x 59
+         timeSeries[i, ..., j] = torch.from_numpy((np.asarray(oneTimeSeries)))
+         
+         if i == 1:
+             print('series for patient ', i ', variables 0-5: ', timeSeries[i, ..., 0:5])
+             print('masks for patient ', i ', variables 0-5: ', numpyMasks[i, ..., 0:5])
+             print()
+             print('series for patient ', i ', variables 20-25: ', timeSeries[i, ..., 20:25])
+             print('masks for patient ', i ', variables 20-25: ', numpyMasks[i, ..., 20:25])
+             print()
+             print('series for patient ', i ', variables 54-58: ', timeSeries[i, ..., 54:58])
+             print('masks for patient ', i ', variables 54-58: ', numpyMasks[i, ..., 54:58])
      
      print(timeSeries)
      torch.save(timeSeries, 'soft_time_series.pt')
