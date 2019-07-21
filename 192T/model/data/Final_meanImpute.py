@@ -13,14 +13,18 @@ def meanImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars):
 
     series = np.asarray(seriesTensor, dtype = np.float64)
     masks = np.asarray(masksTensor, dtype = np.float64)
-        
+    print('numVar: ', numVars)
+    
     for i in range(numPatients):
         for j in range(numVars):
             oneRealSeries = patientReal(series[i, : , j], masks[i,:, j], numTimeSteps)
-            mean = np.mean(oneRealSeries)
-            for y in range(numTimeSteps):
-                if int(masks[i,y,j])==1:
-                    series[i,y,j]=mean
+            if len(oneRealSeries)==0:
+                pass
+            else:
+                mean = np.mean(oneRealSeries)
+                for y in range(numTimeSteps):
+                    if int(masks[i,y,j])==1:
+                        series[i,y,j]=mean
             seriesTensor[i, : , j]=torch.from_numpy(series[i,:,j])
         
         if i == 1:
