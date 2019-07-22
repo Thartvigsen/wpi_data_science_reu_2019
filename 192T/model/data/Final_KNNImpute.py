@@ -8,7 +8,7 @@ import torch
 import numpy as np
 from fancyimpute import KNN
 
-def KNNImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars)
+def KNNImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars):
 
     series = np.asarray(timeSeries, dtype = np.float64)
     masks = np.asarray(masks, dtype = np.float64)
@@ -26,15 +26,16 @@ def KNNImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars)
         seriesTensor[i, ..., ...] = torch.from_numpy(filledPatientTS)
         
         if i == 1:
-            print('series for patient ', i ', variables 0-5: ', timeSeries[i, ..., 0:5])
-            print('masks for patient ', i ', variables 0-5: ', masks[i, ..., 0:5])
+            print('patient ', i )
+            print('series for variables 0-5: ', seriesTensor[i, ..., 0:5])
+            print('masks for variables 0-5: ', masksTensor[i, ..., 0:5])
             print()
-            print('series for patient ', i ', variables 20-25: ', timeSeries[i, ..., 20:25])
-            print('masks for patient ', i ', variables 20-25: ', masks[i, ..., 20:25])
+            print('series for variables 20-25: ', seriesTensor[i, ..., 20:25])
+            print('masks for variables 20-25: ', masksTensor[i, ..., 20:25])
             print()
-            print('series for patient ', i ', variables 54-58: ', timeSeries[i, ..., 54:58])
-            print('masks for patient ', i ', variables 54-58: ', masks[i, ..., 54:58])
+            print('series for variables 54-58: ', seriesTensor[i, ..., 54:58])
+            print('masks for variables 54-58: ', masksTensor[i, ..., 54:58])
  
-     torch.save(timeSeries, 'KNN_time_series.pt')
-     print("Saved!")
+    torch.save(seriesTensor, 'KNN_time_series.pt')
+    print("Saved!")
 
