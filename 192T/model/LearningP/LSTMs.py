@@ -4,7 +4,7 @@ import numpy as np
 
 class LSTMs(nn.Module):
 
-    def __init__(self, hidden_dim, output_dim, input_dim, N_LAYERS, batch_size, LAMBDA):
+    def __init__(self, hidden_dim, output_dim, input_dim, N_LAYERS, batch_size, DROPOUT, LAMBDA):
 
         super(LSTMs, self).__init__()
 
@@ -13,7 +13,7 @@ class LSTMs(nn.Module):
         self.BATCH_SIZE = batch_size
         self.LAMBDA = LAMBDA
 
-        self.LSTM = nn.LSTM(input_dim, self.HIDDEN_DIM, N_LAYERS)
+        self.LSTM = nn.LSTM(input_dim, self.HIDDEN_DIM, N_LAYERS, dropout=DROPOUT)
         self.out = nn.Linear(self.HIDDEN_DIM, output_dim)
 
         self.sigmoid = nn.Sigmoid()
@@ -44,7 +44,7 @@ class LSTMs(nn.Module):
         loss_s = torch.sum(prediction_diffs)
 
         loss = loss_c + self.LAMBDA*loss_s
-        return loss 
+        return loss, loss_s 
 
 
 

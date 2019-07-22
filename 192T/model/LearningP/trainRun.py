@@ -1,11 +1,17 @@
-#This code runs the model through training and validation data
+#his code runs the model through training and validation data
 
 import torch
 import sklearn
 from sklearn import metrics
 import numpy as np
 
-def trainRun(model, train_loader, validation_loader, scheduler, optimizer, N_EPOCHS, criterion):
+def trainRun(model, train_loader, validation_loader, scheduler, optimizer, BATCH_SIZE, N_EPOCHS, criterion, fileName1, fileName2, fileName3):
+
+    print("LAMBDA = ", model.LAMBDA)
+
+    f1 = open(fileName1, "a+")
+    f2 = open(fileName2, "a+")
+    f3 = open(fileName3, "a+")
 
     for epoch in range(N_EPOCHS):
 
@@ -16,8 +22,8 @@ def trainRun(model, train_loader, validation_loader, scheduler, optimizer, N_EPO
             model.zero_grad()
 
             predictions = model(time_series)
-
-            loss = model.applyLoss(predictions, labels)
+           
+            loss, _ = model.applyLoss(predictions, labels)
 
             loss.backward()
 
@@ -25,6 +31,8 @@ def trainRun(model, train_loader, validation_loader, scheduler, optimizer, N_EPO
 
         count = 0
         aucTotal = 0
+        lossTotal =0
+        loss_s_total = 0
         
         for i, (time_series, labels) in enumerate(validation_loader):
 
@@ -50,7 +58,30 @@ def trainRun(model, train_loader, validation_loader, scheduler, optimizer, N_EPO
             arr = np.sum(labels.data.numpy(), axis = 0)
             aucTotal += metrics.roc_auc_score(labels, predictions.detach(), average="micro")
 
+            loss, loss_s = model.applyLoss(predictions, labels)
+
+            lossTotal+= loss/BATCH_SIZE
+            loss_s_total+=loss_s/BATCH_SIZE
+
+        lossFinal = lossTotal/count
+        loss_sFinal = loss_s_total/count
+
         auc = aucTotal/count
-        print('Epoch [{}/{}], Validation AUC: {}'.format(epoch+1, N_EPOCHS, auc))       
+        print('Epoch [{}/{}], Validation AUC: {}'.format(epoch+1, N_EPOCHS, auc))
+        print('EPOCH [{}/{}], Validation Loss: {}'.format(epoch+1, N_EPOCHS, loss))
+        print('EPOCH [{}/{}], Validation Loss_s: {}'.format(epoch+1, N_EPOCHS, loss_s))       
+
+        f1.write('%f,' % lossFinal)
+        f2.write('%f,' % auc)
+        f3.write('%f,' % loss_sFinal)
+
+    f1.seek(f1.tell() -1, 0)
+    f1.truncate()
+
+    f2.seek(f2.tell() -1, 0)
+    f2.truncate()
+
+    f3.seek(f3.tell() -1, 0)
+    f3.truncate()
 
     return model, optimizer 
