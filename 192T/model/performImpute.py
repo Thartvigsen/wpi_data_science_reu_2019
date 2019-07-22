@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-from data.Final_SoftImpute import softImpute
-=======
 from data.Final_meanImpute import meanImpute
->>>>>>> 6e5d842da33abcbd77037e203ff5c70279e6adac
 from dataCleaner import get_sizes
 from data.dataLoader import dataLoader
 
@@ -21,6 +17,6 @@ def performImpute(dataObj):
 
     numPatients, numTimeSteps, numVars = get_sizes(dataObj.data)
 
-    softImpute(dataObj.data, dataObj.masks, numPatients, numTimeSteps, numVars)  
+    meanImpute(dataObj.data, dataObj.masks, numPatients, numTimeSteps, numVars)  
 
 main()
