@@ -1,3 +1,4 @@
+from data.Final_SoftImpute import softImpute
 from data.Final_meanImpute import meanImpute
 from dataCleaner import get_sizes
 from data.dataLoader import dataLoader
