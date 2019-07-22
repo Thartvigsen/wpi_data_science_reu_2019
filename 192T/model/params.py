@@ -12,9 +12,9 @@ class params():
         
         self.HIDDEN_DIMENSION = 128
         self.N_LAYERS = 2
-        self.BATCH_SIZE = 32
+        self.BATCH_SIZE = 64
         self.DROPOUT = 0.5
-        self.N_EPOCHS = 30
+        self.N_EPOCHS = 130
         self.LEARNING_RATE = 0.005
         self.N_FEATURES = 58
         self.N_CLASSES = 20

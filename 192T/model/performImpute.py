@@ -1,4 +1,4 @@
-from data.Final_Combination import tensorCombination
+from data.Final_SoftImpute import softImpute
 from dataCleaner import get_sizes
 from data.dataLoader import dataLoader
 
@@ -16,6 +16,6 @@ def main():
 def performImpute(dataObj):
 
     numPatients, numTimeSteps, numVars = get_sizes(dataObj.data)
-    tensorCombination(dataObj.data, dataObj.masks, numPatients, numTimeSteps, numVars)  
+    softImpute(dataObj.data, dataObj.masks, numPatients, numTimeSteps, numVars)  
 
 main()

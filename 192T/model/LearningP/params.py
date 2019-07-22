@@ -18,6 +18,7 @@ class params():
         self.LEARNING_RATE = 0.005
         self.N_FEATURES = 58
         self.N_CLASSES = 20
+        self.LAMBDA = .5
 
         self.criterion = nn.functional.binary_cross_entropy
        

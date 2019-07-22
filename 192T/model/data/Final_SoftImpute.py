@@ -7,6 +7,8 @@ import importlib
 from fancyimpute import SoftImpute, BiScaler
 
 def softImpute(timeSeries, masks, numPatients, numTimeSteps, numVars):
+
+     print("Hello")
  
      numpyTimeSeries = np.asarray(timeSeries, dtype = np.float64)
      numpyMasks = np.asarray(masks, dtype = np.float64)
@@ -14,7 +16,8 @@ def softImpute(timeSeries, masks, numPatients, numTimeSteps, numVars):
      for i in range(numPatients):
  
          # doing softImpute on one patient at a time, "i" times     shape: 192 x 59
- 
+
+         print("Patient #: ",i) 
          patientTS = SoftImpute().fit_transform(numpyTimeSeries[i])
  
          for j in range(numVars):
@@ -40,7 +43,6 @@ def softImpute(timeSeries, masks, numPatients, numTimeSteps, numVars):
              timeSeries[i, ..., j] = torch.from_numpy((np.asarray(oneTimeSeries)))
  
      
-     print(timeSeries)
      torch.save(timeSeries, 'soft_time_series.pt')
      print("Saved!")
 

@@ -20,7 +20,7 @@ def normalize(minAllVar, maxAllVar, cleanSeries, masks, numPatients, numTimeStep
                 else:
                     normalizedSeries[p, i, var] = (y-minn)/rangg
                                         
-    torch.from_numpy(normalizedSeries)
+    normalizedSeries = torch.from_numpy(normalizedSeries)
     print('normalized series shape: ', normalizedSeries.shape)
     return normalizedSeries
 
@@ -112,7 +112,8 @@ def removeOutliersNormalize(series, masks, diffs, numPatients, numTimeSteps, num
         
     cleanSeries3DMatrix = torch.from_numpy(np.asarray(cleanSeries3DMatrix))
     cleanSeries3DMatrix = torch.transpose(cleanSeries3DMatrix, 1, 2)
-    
+   
+
     for v in range(numVariables):
         minAllVar[v] = min(minn for minn in minAllVarAllPat[v] if minn is not None)
         maxAllVar[v] = max(maxx for maxx in maxAllVarAllPat[v] if maxx is not None)
@@ -120,6 +121,6 @@ def removeOutliersNormalize(series, masks, diffs, numPatients, numTimeSteps, num
     #return minAllVar, maxAllVar, cleanSeries3DMatrix, masks, numPatients, numTimeSteps
 
     normalCleanSeries = normalize(minAllVar, maxAllVar, cleanSeries3DMatrix, masks, numPatients, numTimeSteps)
-    
+ 
     return normalCleanSeries, masks, diffs   #outputs tensors
 

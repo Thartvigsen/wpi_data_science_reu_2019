@@ -22,7 +22,12 @@ def cleanData(series_f, masks_f, diffs_f):
         
 
     series, masks, diffs = removeOutliersNormalize(series, masks, diffs, numPatients, numTimeSteps, numVars)
+
+    print(series.shape)
+
     series = handleZeros(series, masks, numPatients, numTimeSteps, numVars) 
+
+    print(series.shape)
 
     torch.save(series, series_f)
     torch.save(masks, masks_f)
