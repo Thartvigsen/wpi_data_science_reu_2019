@@ -122,5 +122,5 @@ def removeOutliersNormalize(series, masks, diffs, numPatients, numTimeSteps, num
 
     normalCleanSeries = normalize(minAllVar, maxAllVar, cleanSeries3DMatrix, masks, numPatients, numTimeSteps)
  
-    return normalCleanSeries, masks, diffs   #outputs tensors
+    return normalCleanSeries, torch.from_numpy(masks), torch.from_numpy(diffs)   #outputs tensors
 
