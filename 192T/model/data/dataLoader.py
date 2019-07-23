@@ -10,6 +10,7 @@ from data.removeOutliers import removeOutliers
 from data.calculateSplits import calculateSplits
 from data.removeVariable import removeVariable
 from dataCleaner import get_sizes
+from data.catTorch import addMasks
 
 class dataLoader(torch.utils.data.Dataset):
 
@@ -17,6 +18,7 @@ class dataLoader(torch.utils.data.Dataset):
     def __init__(self, series, labels, masks, diffs, BATCH_SIZE):
         super(dataLoader, self).__init__()
         self.data, self.masks, self.labels, self.diffs = self.load_medical(series, labels, masks, diffs, 6261) #Generate the data
+        self.data = addMasks(self.data, self.masks)
         self.train_ix, self.validation_ix, self.test_ix = calculateSplits(self, .8, .1, .1, BATCH_SIZE) #Split the data into train, validation, test
 
     def __getitem__(self, index):

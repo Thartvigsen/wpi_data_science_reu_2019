@@ -5,7 +5,7 @@ import torch
 import sklearn
 from sklearn import metrics
 
-def testRun(model, test_loader, BATCH_SIZE, criterion, fileName4, fileName5, fileName6):
+def testRun(model, test_loader, BATCH_SIZE, criterion, fileName4, fileName5, fileName6, epoch, lambda_val):
 
     count = 0
     aucTotal = 0
@@ -42,12 +42,16 @@ def testRun(model, test_loader, BATCH_SIZE, criterion, fileName4, fileName5, fil
 
     auc = aucTotal/count
 
+    fileName7 = "results/epoch_testing/"+str(lambda_val)+"/"+str(epoch)+".txt"
+
     print('Testing AUC: {}'.format(auc))
-    f4 = open(fileName4, "a+")
-    f5 = open(fileName5, "a+")
-    f6 = open(fileName6, "a+")
-    f4.write('%f,' % lossFinal)
-    f5.write('%f,' % auc)
-    f6.write('%f,' %loss_sFinal)
+    #f4 = open(fileName4, "a+")
+    #f5 = open(fileName5, "a+")
+    #f6 = open(fileName6, "a+")
+    #f4.write('%f,' % lossFinal)
+    #f5.write('%f,' % auc)
+    #f6.write('%f,' %loss_sFinal)
+    f7 = open(fileName7, "a+")
+    f7.write('%f,' %auc)    
 
     return auc

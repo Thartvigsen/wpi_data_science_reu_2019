@@ -14,9 +14,9 @@ class params():
         self.N_LAYERS = 2
         self.BATCH_SIZE = 64
         self.DROPOUT = 0.5
-        self.N_EPOCHS = 130
+        self.N_EPOCHS = 250
         self.LEARNING_RATE = 0.005
-        self.N_FEATURES = 58
+        self.N_FEATURES = 112
         self.N_CLASSES = 20
 
         self.criterion = nn.functional.binary_cross_entropy

@@ -41,7 +41,7 @@ def testRun(model, test_loader, BATCH_SIZE, criterion, fileName3, fileName4, epo
     print('Testing AUC: {}'.format(auc))
     print('Testing Loss: {}'.format(lossFinal))
 
-    fileName5 = "results/epoch_testing/"+str(epoch)+".txt"
+    fileName5 = "results/epoch_testing/masksDiffs/"+str(epoch)+".txt"
 
     f3 = open(fileName3, "a+")
     f4 = open(fileName4, "a+")
