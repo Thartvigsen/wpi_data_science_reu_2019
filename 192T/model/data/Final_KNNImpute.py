@@ -1,17 +1,11 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import torch
 import numpy as np
 from fancyimpute import KNN
 
 def KNNImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars):
 
-    series = np.asarray(timeSeries, dtype = np.float64)
-    masks = np.asarray(masks, dtype = np.float64)
+    series = np.asarray(seriesTensor, dtype = np.float64)
+    masks = np.asarray(masksTensor, dtype = np.float64)
         
     for i in range(numPatients):
         for j in range(numVars):
