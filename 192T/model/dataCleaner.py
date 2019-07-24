@@ -25,7 +25,7 @@ def cleanData(series_f, masks_f, diffs_f):
 
     print(series.shape)
 
-    series = handleZeros(series, masks, numPatients, numTimeSteps, numVars) 
+#    series = handleZeros(series, masks, numPatients, numTimeSteps, numVars) 
 
     print(series.shape)
 
@@ -70,7 +70,7 @@ def handleZeros(data, masks, numPatients, numTimeSteps, numVars):           #all
     return data
 
 def main():
-    cleanData("data.pt", "masks.pt", "diffs.pt")
+    cleanData("zero.pt", "zeroMasks.pt", "zeroDiffs.pt")
     print("Data cleaned!!!")
 
 if __name__ == "__main__":

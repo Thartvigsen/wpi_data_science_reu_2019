@@ -7,7 +7,7 @@ import torch.nn as nn
 
 class params():
     
-    def __init__(self):
+    def __init__(self, lambda_val):
         super(params, self).__init__()
         
         self.HIDDEN_DIMENSION = 128
@@ -18,7 +18,7 @@ class params():
         self.LEARNING_RATE = 0.005
         self.N_FEATURES = 58
         self.N_CLASSES = 20
-        self.LAMBDA = .5
+        self.LAMBDA = lambda_val
 
         self.criterion = nn.functional.binary_cross_entropy
        
