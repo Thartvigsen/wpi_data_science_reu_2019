@@ -4,9 +4,9 @@ This class loads in data provided by the user. It stores the data and accompanyi
 
 import torch
 import torch.utils.data
-from data.meanImpute import meanImpute
+from data.Final_KNNImpute import KNNImpute
 import numpy as np
-from data.removeOutliers import removeOutliers
+#from data.removeOutliers import removeOutliers
 from data.calculateSplits import calculateSplits
 from data.removeVariable import removeVariable
 from dataCleaner import get_sizes
