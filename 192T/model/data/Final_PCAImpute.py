@@ -1,14 +1,13 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[4]:
-
-
 import torch
 import numpy as np
-#from patientHandler import patientReal
+import predictive_imputer
+"""
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import Imputer
+from sklearn.utils import check_array
+from sklearn.utils.validation import check_is_fitted
 
-class PredictiveImputer(BaseEstimator, TransformerMixin):
+class PredictiveImputer():
     def __init__(self, max_iter=10, initial_strategy='mean', tol=1e-3, f_model="RandomForest"):
         self.max_iter = max_iter
         self.initial_strategy = initial_strategy
@@ -88,11 +87,9 @@ class PredictiveImputer(BaseEstimator, TransformerMixin):
             X[X_nan] = estimator_.inverse_transform(estimator_.transform(imputed))[X_nan]
 
         return X
-
+"""    
     
-    
-    
-    
+        
     
 def PCAImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars):
 
@@ -101,6 +98,8 @@ def PCAImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars):
         
     for i in range(numPatients):
         for j in range(numVars):
+            if (int(sum(series[i, ..., j]))==numTimeSteps):
+                continue
             for y in range(numTimeSteps):
                 if int(masks[i,y,j])==1:
                     series[i, y, j]=None
@@ -131,10 +130,3 @@ def PCAImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars):
  
     torch.save(seriesTensor, 'PCA_time_series.pt')
     print("Saved!")
-
-
-# In[ ]:
-
-
-
-

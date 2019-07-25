@@ -10,8 +10,8 @@ def KNNImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars):
     
     for i in range(numPatients):
         for j in range(numVars):
-            if (j<=13):
-                seriesToOutput[i,...,j]=seriesTensor[i,...,j]
+            if (sum(series[i,...,j])==numTimeSteps):
+                #seriesToOutput[i,...,j]=seriesTensor[i,...,j]
                 continue
             for y in range(numTimeSteps):
                 if int(masks[i,y,j])==1:
