@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-
+"""
 class PredictiveImputer:
     def __init__(self, max_iter=10, initial_strategy='mean', tol=1e-3, f_model="RandomForest"):
         self.max_iter = max_iter
@@ -82,7 +82,7 @@ class PredictiveImputer:
 
         return X
 
-    
+"""    
     
     
     
@@ -94,6 +94,8 @@ def MissForestImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVa
         
     for i in range(numPatients):
         for j in range(numVars):
+            if (int(sum(series[i,...,j]))==numTimeSteps):
+                continue
             for y in range(numTimeSteps):
                 if int(masks[i,y,j])==1:
                     series[i, y, j]=None
