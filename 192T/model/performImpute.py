@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-from data.Final_PCAImpute import MissForestImpute
-=======
 from data.Final_KNNImpute import KNNImpute
->>>>>>> 39e14436a36b8b7a34e2fea499d251c6469d0705
 from dataCleaner import get_sizes
 from data.dataLoader import dataLoader
 
