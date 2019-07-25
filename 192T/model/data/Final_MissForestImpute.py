@@ -1,13 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[4]:
-
-
 import torch
 import numpy as np
 
-class PredictiveImputer(BaseEstimator, TransformerMixin):
+class PredictiveImputer:
     def __init__(self, max_iter=10, initial_strategy='mean', tol=1e-3, f_model="RandomForest"):
         self.max_iter = max_iter
         self.initial_strategy = initial_strategy

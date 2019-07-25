@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from data.Final_PCAImpute import MissForestImpute
+=======
+from data.Final_KNNImpute import KNNImpute
+>>>>>>> 39e14436a36b8b7a34e2fea499d251c6469d0705
 from dataCleaner import get_sizes
 from data.dataLoader import dataLoader
 
@@ -17,6 +21,6 @@ def performImpute(dataObj):
 
     numPatients, numTimeSteps, numVars = get_sizes(dataObj.data)
 
-    MissForestImpute(dataObj.data, dataObj.masks, numPatients, numTimeSteps, numVars)  
+    KNNImpute(dataObj.data, dataObj.masks, numPatients, numTimeSteps, numVars)  
 
 main()
