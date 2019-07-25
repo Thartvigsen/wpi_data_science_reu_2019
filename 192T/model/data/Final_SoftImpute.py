@@ -21,6 +21,10 @@ def softImpute(timeSeries, masks, numPatients, numTimeSteps, numVars):
          for j in range(numVars):
              if(j<=13):
                  continue
+            
+             if (int(sum(numpyTimeSeries[i, ..., j])) == numTimeSteps)
+                 continue
+ 
              for y in range(numTimeSteps):
                  
                  if (numpyMasks[i,y,j]) == 1:
