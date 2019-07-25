@@ -1,5 +1,4 @@
-from data.Final_SoftImpute import softImpute
-from data.Final_meanImpute import meanImpute
+from data.Final_PCAImpute import MissForestImpute
 from dataCleaner import get_sizes
 from data.dataLoader import dataLoader
 
@@ -18,6 +17,6 @@ def performImpute(dataObj):
 
     numPatients, numTimeSteps, numVars = get_sizes(dataObj.data)
 
-    meanImpute(dataObj.data, dataObj.masks, numPatients, numTimeSteps, numVars)  
+    MissForestImpute(dataObj.data, dataObj.masks, numPatients, numTimeSteps, numVars)  
 
 main()
