@@ -10,7 +10,7 @@ def KNNImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars):
     
     for i in range(numPatients):
         for j in range(numVars):
-            if (sum(series[i,...,j])==numTimeSteps):
+            if (int(sum(series[i,...,j]))==numTimeSteps):
                 #seriesToOutput[i,...,j]=seriesTensor[i,...,j]
                 continue
             for y in range(numTimeSteps):
