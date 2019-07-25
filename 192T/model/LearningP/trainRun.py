@@ -4,14 +4,15 @@ import torch
 import sklearn
 from sklearn import metrics
 import numpy as np
+from testRun import testRun
 
-def trainRun(model, train_loader, validation_loader, scheduler, optimizer, BATCH_SIZE, N_EPOCHS, criterion, fileName1, fileName2, fileName3):
+def trainRun(model, train_loader, validation_loader, test_loader, scheduler, optimizer, BATCH_SIZE, N_EPOCHS, criterion, fileName1, fileName2, fileName3, fileName4, fileName5, fileName6, lambda_val):
 
     print("LAMBDA = ", model.LAMBDA)
 
-    f1 = open(fileName1, "a+")
-    f2 = open(fileName2, "a+")
-    f3 = open(fileName3, "a+")
+    #f1 = open(fileName1, "a+")
+    #f2 = open(fileName2, "a+")
+    #f3 = open(fileName3, "a+")
 
     for epoch in range(N_EPOCHS):
 
@@ -71,17 +72,19 @@ def trainRun(model, train_loader, validation_loader, scheduler, optimizer, BATCH
         print('EPOCH [{}/{}], Validation Loss: {}'.format(epoch+1, N_EPOCHS, loss))
         print('EPOCH [{}/{}], Validation Loss_s: {}'.format(epoch+1, N_EPOCHS, loss_s))       
 
-        f1.write('%f,' % lossFinal)
-        f2.write('%f,' % auc)
-        f3.write('%f,' % loss_sFinal)
+        testRun(model, test_loader, BATCH_SIZE, criterion, fileName4, fileName5, fileName6, epoch, lambda_val)
 
-    f1.seek(f1.tell() -1, 0)
-    f1.truncate()
+        #f1.write('%f,' % lossFinal)
+        #f2.write('%f,' % auc)
+        #f3.write('%f,' % loss_sFinal)
 
-    f2.seek(f2.tell() -1, 0)
-    f2.truncate()
+    #f1.seek(f1.tell() -1, 0)
+    #f1.truncate()
 
-    f3.seek(f3.tell() -1, 0)
-    f3.truncate()
+    #f2.seek(f2.tell() -1, 0)
+    #f2.truncate()
+
+    #f3.seek(f3.tell() -1, 0)
+    #f3.truncate()
 
     return model, optimizer 
