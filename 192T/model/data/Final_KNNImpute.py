@@ -17,7 +17,7 @@ def KNNImpute(seriesTensor, masksTensor, numPatients, numTimeSteps, numVars):
                 if int(masks[i,y,j])==1:
                     series[i, y, j]=None
                     
-        #per patient, perform imputation
+        #per patient, perform imputation##
         filledPatientTS = KNN(k=3).fit_transform(series[i])
         
         #putting time series vectors in original tensor shapes
