@@ -4,7 +4,7 @@ import sys
 
 def main():
 
-   imputes = ["data"]
+   imputes = ["data", "mean_data", "zero", "combination_data", "forward_data", "soft_data", "KNN_data"]
 
    for i in imputes:
 
