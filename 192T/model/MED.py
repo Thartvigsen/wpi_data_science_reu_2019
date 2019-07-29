@@ -28,31 +28,28 @@ class LSTMs(nn.Module):
         #prediction = self.sigmoid(self.output)
         return self.prediction[-1]
 
-    def forwardTest(self, sequence):
-        state = (torch.zeros(self.N_LAYERS, self.BATCH_SIZE, self.HIDDEN_DIM), torch.zeros(self.N_LAYERS, self.BATCH_SIZE, self.HIDDEN_DIM))
-        sequence = torch.transpose(sequence,0,1)
-        hidden, state = self.LSTM(sequence, state)
-        output = self.out(hidden)
-        self.prediction = self.sigmoid(output)
-        #self.output = self.out(hidden[-1])
-        #prediction = self.sigmoid(self.output)
-        return self.prediction
-
-
     def applyLoss(self, predictions, labels):
 
         criterion=nn.functional.binary_cross_entropy
         loss_c = criterion(predictions, labels)
  
-        prediction_diffs = []   
-        for i in range(self.prediction.shape[0]):
-            if i == 0:
-                prediction_diffs.append(self.prediction[0]-self.prediction[0])
-            if i > 0:
-                prev_max, _ = self.prediction[:i].max(0)
-                prediction_diffs.append(prev_max - self.prediction[i])
-        prediction_diffs = torch.stack(prediction_diffs, 0).clamp(0)
-        loss_s = torch.sum(prediction_diffs)
+        patientLoss = []   
+
+        for i in range(self.prediction.shape[1]):
+            for j in range(self.prediction.shape[2]):
+                prediction_diffs = []
+                for k in range(self.prediction.shape[0]):
+                    if k == 0:
+                        prediction_diffs.append(0)
+                    if(labels[i,j]==1):
+                        prev_max, _ = self.prediction[:k,i,j].max(0)
+                        prediction_diffs.append(prev_max - self.prediction[k, i, j])
+                    else:
+                        prev_min, _ = self.prediction[:k,i,j].min(0)
+                        prediction_diffs.append(self.prediction[k,i,j]-prev_min)
+                        
+            patientLoss.append(sum(prediction_diffs))
+        loss_s = sum(patientLoss)/1280
 
         loss = loss_c + self.LAMBDA*loss_s
         return loss, loss_s 

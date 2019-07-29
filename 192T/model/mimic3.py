@@ -21,4 +21,4 @@ train_loader, validation_loader, test_loader = dataObj.train_ix, dataObj.validat
 
 model = RNN(params.HIDDEN_DIMENSION, params.N_CLASSES, params.N_FEATURES, params.N_LAYERS, params.BATCH_SIZE, params.DROPOUT) # Create the model
 
-runModel(model, train_loader, validation_loader, test_loader, params,"results/"+sys.argv[2]+sys.argv[3]+"/loss/"+sys.argv[1]+".txt","results/"+sys.argv[2]+sys.argv[3]+"/auc/"+sys.argv[1]+".txt", "results/"+sys.argv[2]+sys.argv[3]+"/testLoss.txt", "results/"+sys.argv[2]+sys.argv[3]+"/testAUC.txt", NUM_ITER=10) # Run and evaluate the model
+runModel(model, train_loader, validation_loader, test_loader, params,"results/"+sys.argv[2]+sys.argv[3]+"/trainLoss/"+sys.argv[1]+".txt","results/"+sys.argv[2]+sys.argv[3]+"/trainAUC/"+sys.argv[1]+".txt", "results/"+sys.argv[2]+sys.argv[3]+"/testLoss.txt", "results/"+sys.argv[2]+sys.argv[3]+"/testAUC.txt", "results/"+sys.argv[2]+sys.argv[3]+"/testF1.txt", NUM_ITER=10) # Run and evaluate the model

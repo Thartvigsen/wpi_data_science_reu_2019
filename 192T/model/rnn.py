@@ -23,6 +23,6 @@ class RNN(nn.Module):
         X = torch.transpose(X, 0, 1)
         
         hidden, state = self.LSTM(X, state)
-        output = self.out(hidden[-1])
+        output = self.out(hidden)
         prediction = self.sigmoid(output)
         return prediction

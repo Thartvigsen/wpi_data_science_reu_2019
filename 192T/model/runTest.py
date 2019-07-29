@@ -3,7 +3,7 @@ import time
 import sys
 
 def main():
-    for i in range(11):
+    for i in range(6):
 
         
         x = 0
@@ -21,7 +21,7 @@ def main():
 def child(j):
         
     print("start ", j)
-    arg = "sbatch mimic3_s.sh " + str(j) + " dropout/ " + sys.argv[1]
+    arg = "sbatch mimic3.sh " + str(j) + " tr/ " + sys.argv[1]
     #arg = "sbatch simpleJob.sh"
     os.system(arg) 
     sys.exit(0)
