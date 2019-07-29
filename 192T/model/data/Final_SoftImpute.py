@@ -16,10 +16,15 @@ def softImpute(timeSeries, masks, numPatients, numTimeSteps, numVars):
      for i in range(numPatients):
  
          # doing softImpute on one patient at a time, "i" times     shape: 192 x 59
+
  
          for j in range(numVars):
              if(j<=13):
                  continue
+            
+             if (int(sum(numpyTimeSeries[i, ..., j])) == numTimeSteps)
+                 continue
+ 
              for y in range(numTimeSteps):
                  
                  if (numpyMasks[i,y,j]) == 1:
@@ -29,7 +34,6 @@ def softImpute(timeSeries, masks, numPatients, numTimeSteps, numVars):
              # doing softImpute on one patient at a time, "i" times     shape: 192 x 59
     
          patientTS = SoftImpute().fit_transform(numpyTimeSeries[i])
-
  
              # stores into one giant tensor, 6261 x 192 x 59
          timeSeries[i, ..., ...] = torch.from_numpy(np.asarray(patientTS))
