@@ -14,7 +14,7 @@ def testRun(model, test_loader, BATCH_SIZE, criterion, fileName4, fileName5, fil
 
     for i, (time_series, labels) in enumerate(test_loader):
 
-        predictions = model.forwardTest(time_series)
+        predictions = model(time_series)
 
         loss, loss_s = model.applyLoss(predictions[-1], labels)
  

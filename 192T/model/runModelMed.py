@@ -9,6 +9,6 @@ def runModel(model, train_loader, validation_loader, test_loader, params, fileNa
 
     params.setOptimizer(model)
         
-    model, params.optimizer = trainRun(model, train_loader, test_loader, validation_loader, params.scheduler, params.optimizer, params.BATCH_SIZE, params.N_EPOCHS, params.criterion, fileName, fileName2, fileName3, fileName4, fileName5, fileName6, LAMBDA)
+    model, params.optimizer = trainRun(model, train_loader, test_loader, validation_loader, params.scheduler, params.optimizer, params.BATCH_SIZE, params.N_EPOCHS, params.criterion, fileName, fileName2, fileName3, fileName4, fileName5, fileName6, LAMBDA, params.ALPHA)
 
-    auc = testRun(model, test_loader, params.BATCH_SIZE, params.criterion, fileName4, fileName5, fileName6, LAMBDA)
+    auc = testRun(model, test_loader, params.BATCH_SIZE, params.criterion, fileName4, fileName5, fileName6, LAMBDA, params.ALPHA)

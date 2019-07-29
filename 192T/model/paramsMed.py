@@ -25,6 +25,7 @@ class params():
         self.scheduler = 0
 
         self.LAMBDA = LAMBDA
+        self.ALPHA = 0.1
 
     def setOptimizer(self, model):
 

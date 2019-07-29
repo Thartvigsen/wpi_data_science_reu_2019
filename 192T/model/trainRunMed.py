@@ -7,7 +7,7 @@ import numpy as np
 import os
 from testRunMed import testRun
 
-def trainRun(model, train_loader, test_loader, validation_loader, scheduler, optimizer, BATCH_SIZE, N_EPOCHS, criterion, fileName1, fileName2, fileName3, fileName4, fileName5, fileName6, LAMBDA):
+def trainRun(model, train_loader, test_loader, validation_loader, scheduler, optimizer, BATCH_SIZE, N_EPOCHS, criterion, fileName1, fileName2, fileName3, fileName4, fileName5, fileName6, LAMBDA, ALPHA):
 
     print("LAMBDA = ", model.LAMBDA)
 
@@ -25,7 +25,16 @@ def trainRun(model, train_loader, test_loader, validation_loader, scheduler, opt
 
                 predictions = model.forward(time_series)
 
-                loss, _ = model.applyLoss(predictions, labels)
+                averageLoss = 0
+
+                for i in range(192):
+                    averageLoss+=criterion(predictions[i], labels)
+
+                averageLoss/=192
+
+                finalLoss, _ = model.applyLoss(predictions[-1], labels)
+
+                loss = (1-ALPHA)*finalLoss+ALPHA*averageLoss
 
                 loss.backward()
 
@@ -42,7 +51,7 @@ def trainRun(model, train_loader, test_loader, validation_loader, scheduler, opt
 
                 predictions = model.forward(time_series)
 
-                loss, loss_s = model.applyLoss(predictions, labels)
+                loss, loss_s = model.applyLoss(predictions[-1], labels)
 
                 count += 1
             
@@ -60,7 +69,7 @@ def trainRun(model, train_loader, test_loader, validation_loader, scheduler, opt
                         labelsT[i][0]=0
                         labels = torch.transpose(labelsT, 0, 1)
                 arr = np.sum(labels.data.numpy(), axis = 0) 
-                aucTotal += metrics.roc_auc_score(labels, predictions.detach(), average="micro")
+                aucTotal += metrics.roc_auc_score(labels, predictions[-1].detach(), average="micro")
                 lossTotal += loss/BATCH_SIZE    
 
             auc = aucTotal/count
