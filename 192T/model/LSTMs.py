@@ -26,18 +26,7 @@ class LSTMs(nn.Module):
         self.prediction = self.sigmoid(output)
         #self.output = self.out(hidden[-1])
         #prediction = self.sigmoid(self.output)
-        return self.prediction[-1]
-
-    def forwardTest(self, sequence):
-        state = (torch.zeros(self.N_LAYERS, self.BATCH_SIZE, self.HIDDEN_DIM), torch.zeros(self.N_LAYERS, self.BATCH_SIZE, self.HIDDEN_DIM))
-        sequence = torch.transpose(sequence,0,1)
-        hidden, state = self.LSTM(sequence, state)
-        output = self.out(hidden)
-        self.prediction = self.sigmoid(output)
-        #self.output = self.out(hidden[-1])
-        #prediction = self.sigmoid(self.output)
         return self.prediction
-
 
     def applyLoss(self, predictions, labels):
 
