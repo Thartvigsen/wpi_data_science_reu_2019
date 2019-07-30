@@ -20,7 +20,7 @@ def testRun(model, test_loader, BATCH_SIZE, criterion, fileName4, fileName5, fil
  
         for i in range(192):
             loss = criterion(predictions[i],labels)
-            fname = "results/MED/data/0.5/timeStepLoss/" + str(i)+".txt"
+            fname = "results/MED/forward_data/"+str(LAMBDA)+"/timeStepLoss/" + str(i)+".txt"
             f = open(fname, "a+")
             f.write("%f," % loss)
 

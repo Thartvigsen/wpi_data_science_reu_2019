@@ -36,6 +36,8 @@ def trainRun(model, train_loader, test_loader, validation_loader, scheduler, opt
 
                 loss = (1-ALPHA)*finalLoss+ALPHA*averageLoss
 
+                loss = finalLoss
+
                 loss.backward()
 
                 optimizer.step()
