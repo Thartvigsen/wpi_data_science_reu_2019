@@ -1,12 +1,13 @@
 import torch
 import torch.nn as nn
 import numpy as np 
+import time
 
-class LSTMs(nn.Module):
+class MED(nn.Module):
 
     def __init__(self, hidden_dim, output_dim, input_dim, N_LAYERS, batch_size, DROPOUT, LAMBDA):
 
-        super(LSTMs, self).__init__()
+        super(MED, self).__init__()
 
         self.HIDDEN_DIM = hidden_dim
         self.N_LAYERS = N_LAYERS
@@ -32,20 +33,45 @@ class LSTMs(nn.Module):
 
         criterion=nn.functional.binary_cross_entropy
         loss_c = criterion(predictions, labels)
- 
-        prediction_diffs = []   
-        for i in range(self.prediction.shape[0]):
-            if i == 0:
-                prediction_diffs.append(self.prediction[0]-self.prediction[0])
-            else:
-                if(i > 0:
-                prev_max, _ = self.prediction[:i].max(0)
-                prediction_diffs.append(prev_max - self.prediction[i])
-        prediction_diffs = torch.stack(prediction_diffs, 0).clamp(0)
-        loss_s = torch.sum(prediction_diffs)
 
+        loss_s = 0
+
+        start = time.time()
+        predictionsNp = self.prediction.detach().numpy()
+        for i in range(predictionsNp.shape[1]):
+                for j in range(predictionsNp.shape[2]):
+                    if(labels[i][j]==1):
+                        b = True
+                    else:
+                        b = False
+                    
+                    if(b):
+                        prev_max = 0
+                        for k in range(predictionsNp.shape[0]):
+                            if k == 0:
+                                prev_max = predictionsNp[k][i][j]
+                            else:
+                                diff=(prev_max-predictionsNp[k][i][j])
+                                loss_s+=diff
+                                if(diff<0):
+                                    prev_max = predictionsNp[k][i][j]
+                    else:
+                        prev_min = 0
+                        for k in range(predictionsNp.shape[0]):
+                            if k == 0:
+                                prev_min = predictionsNp[k][i][j]
+                            else:
+                                diff=(predictionsNp[k][i][j]-prev_min)
+                                loss_s+=diff
+                                if(diff<0):
+                                    prev_min = predictionsNp[k][i][j]
+        end = time.time()
+        print("2nd: ",loss_s)
+        print("time elapsed: ", (end-start))
+                  
+           
         loss = loss_c + self.LAMBDA*loss_s
-        return loss, loss_s 
+        return loss, loss_s
 
 
 
