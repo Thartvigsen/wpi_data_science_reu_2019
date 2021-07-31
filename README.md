@@ -38,7 +38,7 @@ The data we will use is from the [MIMIC III Intensive Care Unit Database](https:
 * Go through the Learning Resources links to become familiar with the algorithms with which we will work.
 * Read the first paper I linked in [papers](/papers) (we will be implementing their algorithm first) and summarize the **high level** ideas of the paper (for example, what is the problem they are trying to solve? What data do they use? What is the output of the model?).
 
-## Summer Learning Objcetives
+## Expected Learning Outcomes
 The goal is to discover the best solution to a well-formed problem, thus having publishable results. Along the way, you will become proficient in the following skills:
 * Implementing Deep Learning algorithms in PyTorch.
 * Deep understanding of Recurrent Neural Networks and related topics.
